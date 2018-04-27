@@ -43,7 +43,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 //        super.configure(http);
 
-        /*http.authorizeRequests()    // 关闭权限验证，用于测试
+        // 所有请求通过权限验证，用于测试
+        /*http.authorizeRequests()
                 .antMatchers("*").permitAll()
                 .and()
                 .csrf().disable();*/

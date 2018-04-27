@@ -32,7 +32,13 @@ spring:
     suffix: .html
     encoding: UTF-8
     content-type: text/html
-    cache: false
+    cache: false   #不启用缓存
+
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    pool:
+      max-active: 8 #最大连接数 0表示无限制
 
 logging:
   level:

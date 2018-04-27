@@ -16,9 +16,4 @@ public class ViewControl {
         return "index";
     }
 
-    @RequestMapping("/str")
-    @ResponseBody
-    public String getString() {
-        return "1234";
-    }
 }

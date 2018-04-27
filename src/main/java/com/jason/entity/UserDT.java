@@ -6,10 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.Collection;
 
@@ -22,7 +19,8 @@ import java.util.Collection;
 public class UserDT implements UserDetails {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @SequenceGenerator(name = "id", sequenceName = "")    // 使用自定义序列
     private Integer id;
 
     @NotBlank(message = "账号不能为空")
