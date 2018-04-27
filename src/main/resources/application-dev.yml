@@ -1,0 +1,41 @@
+server:
+  port: 8090
+  context-path: /techno
+  tomcat:
+    uri-encoding: UTF-8
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/jason?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+    initialSize: 5
+    minIdle: 5
+    maxIdle: 30
+    maxWait: 60000  #获取连接等待超时时间
+    timeBetweenEvictionRunsMillis: 60000  #关闭空闲连接间隔检测时间
+    minEvictableIdleTimeMillis: 300000  #单个连接在池中最小存活时间
+    filters: stat,wall,slf4j  #配置监控拦截的filters,去掉后无法统计sql，wall用于防火墙
+    useGlobalDataSourceStat: true #合并多个监控数据
+    loginUsername: druid
+    loginPassword:  druid
+    allow:  #ip白名单，为空时所有都可访问
+#    deny: #ip黑名单，若与白名单冲突，优先级高于白名单
+    restEnable: false #禁用HTML页面的 Rest all 功能
+  jpa:
+    show-sql: true
+#    hibernate:
+#      ddl-auto: update
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+    content-type: text/html
+    cache: false
+
+logging:
+  level:
+    com.jason.techno.control: debug
+#    com.jason.techno.dao: debug
+#    com.jason.techno.security: debug
