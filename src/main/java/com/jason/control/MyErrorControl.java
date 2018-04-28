@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.web.ErrorViewResolver;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,8 +19,9 @@ import java.util.Map;
 /**
  * Created by BNC on 2018/4/18.
  */
+@ApiIgnore
 @Controller
-public class MyErrorController implements ErrorController {
+public class MyErrorControl implements ErrorController {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 

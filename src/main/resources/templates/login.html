@@ -32,12 +32,13 @@
 <script type="text/javascript">
     $(function() {
         $('a').click(function() {
+//            var a = document.createElement('a');
+//            a.href = "/techno/checkIn?username=" +$("#inputEmail").val() + 'password='+$("#inputPassword").val();
+//            a.click();
+
             $.post("/techno/checkIn",
                 {username: $("#inputEmail").val(),
-                password: $("#inputPassword").val()},
-            function(data) {
-                console.log(data);
-            });
+                password: $("#inputPassword").val()});
         });
     });
 </script>

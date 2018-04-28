@@ -1,5 +1,7 @@
 package com.jason.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.security.core.GrantedAuthority;
@@ -14,29 +16,37 @@ import java.util.Collection;
  * 用户账号实体
  * Created by BNC on 2018/4/13.
  */
+@ApiModel(description = "账户")
 @Entity
 @Table(name = "user")
 public class UserDT implements UserDetails {
 
+    @ApiModelProperty(name = "id", value = "主键", hidden = true)
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 //    @SequenceGenerator(name = "id", sequenceName = "")    // 使用自定义序列
     private Integer id;
 
+    @ApiModelProperty(name = "username", value = "用户名")
     @NotBlank(message = "账号不能为空")
     @Email(message = "请输入正确的邮箱地址")
     private String username;
 
+    @ApiModelProperty(name = "password", value = "密码")
     @NotBlank(message = "密码不能为空")
     @Size(min = 6,max = 18, message = "密码长度不得小于6位，不得大于18位")
     private String password;
-    // 账号未过期
+
+    @ApiModelProperty(name = "isAccountNonExpired", value = "账号未过期", hidden = true)
     private Integer isAccountNonExpired;
-    // 账号未锁定
+
+    @ApiModelProperty(name = "isAccountNonLocked", value = "账号未锁定", hidden = true)
     private Integer isAccountNonLocked;
-    // 密码未过期
+
+    @ApiModelProperty(name = "isCredentialsNonExpired", value = "密码未过期", hidden = true)
     private Integer isCredentialsNonExpired;
-    // 账号可用
+
+    @ApiModelProperty(name = "isEnabled", value = "账号可用", hidden = true)
     private Integer isEnabled;
 
     public UserDT(){}

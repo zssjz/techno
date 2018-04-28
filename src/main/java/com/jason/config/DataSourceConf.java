@@ -23,7 +23,7 @@ import java.util.Map;
  * Created by BNC on 2018/4/13.
  */
 @Configuration
-public class DataSourceConfig implements EnvironmentAware {
+public class DataSourceConf implements EnvironmentAware {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 

@@ -13,11 +13,12 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 /**
+ * Security 配置类
  * Created by BNC on 2018/4/13.
  */
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConf extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private MyAuthenticationSuccessHandler successHandler;
@@ -44,10 +45,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //        super.configure(http);
 
         // 所有请求通过权限验证，用于测试
-        /*http.authorizeRequests()
-                .antMatchers("*").permitAll()
-                .and()
-                .csrf().disable();*/
+//        http.authorizeRequests()
+//                .antMatchers("/**").permitAll()
+//                .and()
+//                .csrf().disable();
 
         http.authorizeRequests()    // 任何请求
                 .antMatchers("/","/index","/login","/logout","/resources/**").permitAll()    // 允许所有用户访问
