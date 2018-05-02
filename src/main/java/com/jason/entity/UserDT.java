@@ -135,7 +135,7 @@ public class UserDT implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        AuthorityUtils.commaSeparatedStringToAuthorityList("admin,user");
+        AuthorityUtils.commaSeparatedStringToAuthorityList("role_admin,role_user");
         return null;
     }
 

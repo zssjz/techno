@@ -62,8 +62,8 @@ public class DataSourceConf implements EnvironmentAware {
         servletRegistrationBean.setServlet(new StatViewServlet());
         servletRegistrationBean.addUrlMappings("/druid/*");
         Map<String, String> initParam = new HashMap<String, String>();
-        initParam.put("loginUsername", propertyResolver.getProperty("loginUsername"));
-        initParam.put("loginPassword", propertyResolver.getProperty("loginPassword"));
+//        initParam.put("loginUsername", propertyResolver.getProperty("loginUsername"));
+//        initParam.put("loginPassword", propertyResolver.getProperty("loginPassword"));
         initParam.put("allow",propertyResolver.getProperty("allow"));
 //        initParam.put("deny", propertyResolver.getProperty("deny"));
         initParam.put("restEnable", propertyResolver.getProperty("restEnable"));
