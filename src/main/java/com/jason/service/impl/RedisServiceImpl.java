@@ -21,27 +21,8 @@ public class RedisServiceImpl implements RedisService {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    // StringRedisTemplate（继承了RedisTemplate） 默认提供的Redis接口，适合Key和Value都是字符串的情况
-    @Autowired
-    private StringRedisTemplate stringRedisTemplate;
-
-    // RedisTemplate 另外一个内置的API
-    @Autowired
-    private RedisTemplate redisTemplate;
-
     @Override
     public UserDT getValue(String key) {
-        // 设置普通的key-value
-        stringRedisTemplate.opsForValue().set("key", "value");
-        stringRedisTemplate.opsForValue().get("key");
-        // List
-        stringRedisTemplate.opsForList().leftPush("key", "value");
-        Long size = stringRedisTemplate.opsForList().size("key");
-        List list = stringRedisTemplate.opsForList().range("key", 0, size - 1);
-        // map
-        stringRedisTemplate.opsForHash().put("map", "key", "value");
-        stringRedisTemplate.opsForHash().putAll("map", new HashMap<>());
-        Object obj = stringRedisTemplate.opsForHash().get("map", "key");
         return null;
     }
 
