@@ -2,6 +2,7 @@ package com.jason.service.impl;
 
 import com.jason.entity.UserDT;
 import com.jason.service.RedisService;
+import com.jason.utils.RedisUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +14,16 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Redis集成
+ *
  * Created by BNC on 2018/4/28.
  */
 @Service
 public class RedisServiceImpl implements RedisService {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    @Autowired
+    private RedisUtil redis;
 
     @Override
     public UserDT getValue(String key) {

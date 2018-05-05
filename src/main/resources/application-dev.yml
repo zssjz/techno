@@ -48,9 +48,16 @@ spring:
       max-wait: 1000 #等待可用连接最大时间，默认为-1，表示永不超时（超时抛出JedisConnectionException）
       max-active: 500 #分配Jedis实例，若达到该数量，则pool耗尽；-1表示无限制
 
+management:
+  context-path: /manage
+  security:
+    enabled: true
+    roles: ADMIN
+    sessions: stateless
 
 logging:
   level:
     com.jason.techno.control: debug
+
 #    com.jason.techno.dao: debug
 #    com.jason.techno.security: debug

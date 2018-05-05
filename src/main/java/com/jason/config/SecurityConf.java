@@ -6,7 +6,6 @@ import com.jason.security.MyLogoutHandler;
 import com.jason.security.MyLogoutSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -50,19 +49,19 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
 //                .and()
 //                .csrf().disable();
 
-        http.authorizeRequests()    // 任何请求
-                .antMatchers("/","/index","/login","/logout","/resources/**").permitAll()    // 允许所有用户访问
-                .antMatchers("/druid/**","/swagger/**").hasRole("ADMIN")  // ADMIN权限才能访问（hasRole方法不需要前缀“ROLE_”）
-                .anyRequest()   // 其他请求
-                .authenticated()    // 需要权限验证
-                .and()
-                .csrf().disable();  // 关闭CSRF 验证
-
         http.formLogin()    // 基于表单的认证
                 .loginPage("/login")    // 自定义登录页面
                 .successHandler(successHandler) // 登录成功处理
                 .failureHandler(failureHandler) // 登录失败处理
                 .loginProcessingUrl("/checkIn");   // 登录请求
+
+        http.authorizeRequests()    // 任何请求
+                .antMatchers("/","/index","/login","/logout","/resources/**").permitAll()    // 允许所有用户访问
+                .antMatchers("/druid/**","/swagger/**","/manage/**").hasRole("ADMIN")  // ADMIN权限才能访问（hasRole方法不需要前缀“ROLE_”）
+                .anyRequest()   // 其他请求
+                .authenticated()    // 需要权限验证
+                .and()
+                .csrf().disable();  // 关闭CSRF 验证
 
         http.logout()   // 登出
                 .logoutUrl("/logout")
@@ -71,7 +70,7 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
                 .addLogoutHandler(logoutHandler);    // 登出处理
 
         http.sessionManagement()
-                .maximumSessions(1);  // 同一账号仅允许一个在线
+                .maximumSessions(1);  // 同一账号仅允许在线数量
     }
 
 }
