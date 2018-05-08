@@ -31,12 +31,11 @@ public class SwaggerConf {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Demo")  // 页面标题
-                .description("技术整合")    // 描述
-                .contact(new Contact("jason", "", "zhangsen1@bonc.com.cn")) // 创建人信息
+                .title("Spring Boot")  // 页面标题
+                .description("Demo")    // 描述
+                .contact(new Contact("jason", "", "")) // 创建人信息
                 .termsOfServiceUrl("")  //url
                 .version("1.0.0")
                 .build();
-
     }
 }
