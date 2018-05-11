@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * 一般来说，LogoutHandler的实现类可以参阅到注销处理中。他们被用来执行必要的清理，因而他们不应该抛出错误
- * Created by BNC on 2018/4/18.
+ * Created by Jason on 2018/4/18.
  */
 @Component
 public class MyLogoutHandler implements LogoutHandler {

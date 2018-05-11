@@ -1,9 +1,9 @@
-package com.jason.service.impl;
+package com.jason.components.service.impl;
 
-import com.jason.dao.UserRepository;
+import com.jason.components.dao.UserRepository;
 import com.jason.dto.MessageDTO;
-import com.jason.entity.UserDT;
-import com.jason.service.UserService;
+import com.jason.entity.UserDO;
+import com.jason.components.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by BNC on 2018/4/18.
+ * Created by Jason on 2018/4/18.
  */
 @Service
 public class UserServiceImpl implements UserService {
@@ -22,11 +22,11 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public MessageDTO registerUser(UserDT user) {
+    public MessageDTO registerUser(UserDO user) {
         MessageDTO msg = new MessageDTO();
         String password = user.getPassword();
         user.setPassword(this.encryptPassword(password.trim()));
-        UserDT result = null;
+        UserDO result = null;
         try {
             result = userRepository.save(user);
         } catch (Exception e) {

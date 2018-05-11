@@ -17,7 +17,7 @@ import java.io.IOException;
 /**
  * 成功处理器跳转页面
  *      继承spring boot 默认的处理器
- * Created by BNC on 2018/4/16.
+ * Created by Jason on 2018/4/16.
  */
 @Component
 public class MyAuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {

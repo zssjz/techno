@@ -1,7 +1,7 @@
-package com.jason.service;
+package com.jason.components.service;
 
 /**
- * Created by BNC on 2018/4/28.
+ * Created by Jason on 2018/4/28.
  */
 public interface InvokeService {
 

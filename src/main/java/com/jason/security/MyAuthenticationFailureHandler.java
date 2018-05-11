@@ -17,7 +17,7 @@ import java.io.IOException;
 
 /**
  * 失败处理器返回接送信息
- * Created by BNC on 2018/4/16.
+ * Created by Jason on 2018/4/16.
  */
 @Component
 public class MyAuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler {

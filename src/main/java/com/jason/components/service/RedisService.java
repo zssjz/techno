@@ -1,9 +1,9 @@
-package com.jason.service;
+package com.jason.components.service;
 
-import com.jason.entity.UserDT;
+import com.jason.entity.UserDO;
 
 /**
- * Created by BNC on 2018/4/28.
+ * Created by Jason on 2018/4/28.
  */
 public interface RedisService {
 
@@ -12,12 +12,12 @@ public interface RedisService {
      * @param key
      * @return
      */
-    UserDT getValue(String key);
+    UserDO getValue(String key);
 
     /**
      * 存入对象
      * @param user
      * @return
      */
-    String setValue(UserDT user);
+    String setValue(UserDO user);
 }

@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 序列化与反序列化
- * Created by BNC on 2018/5/2.
+ * Created by Jason on 2018/5/2.
  */
 public class ProtostuffUtil {
 

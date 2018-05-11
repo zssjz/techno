@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by BNC on 2018/4/18.
+ * Created by Jason on 2018/4/18.
  */
 @Component
 public class MyLogoutSuccessHandler implements LogoutSuccessHandler {

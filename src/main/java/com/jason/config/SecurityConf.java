@@ -13,7 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 /**
  * Security 配置类
- * Created by BNC on 2018/4/13.
+ * Created by Jason on 2018/4/13.
  */
 @Configuration
 @EnableWebSecurity

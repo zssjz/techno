@@ -14,12 +14,12 @@ import java.util.Collection;
 
 /**
  * 用户账号实体
- * Created by BNC on 2018/4/13.
+ * Created by Jason on 2018/4/13.
  */
 @ApiModel(description = "账户")
 @Entity
 @Table(name = "user")
-public class UserDT implements UserDetails {
+public class UserDO implements UserDetails {
 
     @ApiModelProperty(name = "id", value = "主键", hidden = true)
     @Id
@@ -49,14 +49,14 @@ public class UserDT implements UserDetails {
     @ApiModelProperty(name = "isEnabled", value = "账号可用", hidden = true)
     private Integer isEnabled;
 
-    public UserDT(){}
+    public UserDO(){}
 
-    public UserDT(String username, String password) {
+    public UserDO(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
-    public UserDT(String username, String password, Integer isAccountNonExpired, Integer isAccountNonLocked, Integer isCredentialsNonExpired, Integer isEnabled) {
+    public UserDO(String username, String password, Integer isAccountNonExpired, Integer isAccountNonLocked, Integer isCredentialsNonExpired, Integer isEnabled) {
         this.username = username;
         this.password = password;
         this.isAccountNonExpired = isAccountNonExpired;
@@ -65,7 +65,7 @@ public class UserDT implements UserDetails {
         this.isEnabled = isEnabled;
     }
 
-    public UserDT(Integer id, String username, String password, Integer isAccountNonExpired, Integer isAccountNonLocked, Integer isCredentialsNonExpired, Integer isEnabled) {
+    public UserDO(Integer id, String username, String password, Integer isAccountNonExpired, Integer isAccountNonLocked, Integer isCredentialsNonExpired, Integer isEnabled) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -173,7 +173,7 @@ public class UserDT implements UserDetails {
 
     @Override
     public String toString() {
-        return "UserDT{" +
+        return "UserDO{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +

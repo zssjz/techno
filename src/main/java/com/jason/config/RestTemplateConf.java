@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 
 /**
  * RestTemplate 配置类
- * Created by BNC on 2018/4/28.
+ * Created by Jason on 2018/4/28.
  */
 @Configuration
 public class RestTemplateConf {

@@ -1,7 +1,7 @@
-package com.jason.service.impl;
+package com.jason.components.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jason.service.InvokeService;
+import com.jason.components.service.InvokeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * Created by BNC on 2018/4/28.
+ * Created by Jason on 2018/4/28.
  */
 @Service
 public class InvokeServiceImpl implements InvokeService {

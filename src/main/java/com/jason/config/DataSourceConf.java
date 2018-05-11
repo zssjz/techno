@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by BNC on 2018/4/13.
+ * Created by Jason on 2018/4/13.
  */
 @Configuration
 public class DataSourceConf implements EnvironmentAware {

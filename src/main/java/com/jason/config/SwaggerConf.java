@@ -12,7 +12,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- * Created by BNC on 2018/4/27.
+ * Created by Jason on 2018/4/27.
  */
 @Configuration
 @EnableSwagger2
@@ -24,16 +24,16 @@ public class SwaggerConf {
                 .groupName("通用")
                 .apiInfo(this.apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.jason.control")) // 扫描包
+                .apis(RequestHandlerSelectors.basePackage("com.jason.components.control")) // 扫描包
                 .paths(PathSelectors.any())
                 .build();
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Spring Boot")  // 页面标题
-                .description("Demo")    // 描述
-                .contact(new Contact("jason", "", "")) // 创建人信息
+                .title("Techno")  // 页面标题
+                .description("Spring Boot Demo")    // 描述
+                .contact(new Contact("Jason", "https://github.com/zssjz", "")) // 创建人信息
                 .termsOfServiceUrl("")  //url
                 .version("1.0.0")
                 .build();
