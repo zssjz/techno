@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * 序列化与反序列化
  * Created by Jason on 2018/5/2.
  */
-public class ProtostuffUtil {
+public class SerializeUtil {
 
     private static Map<Class<?>, Schema<?>> cachedSchema = new ConcurrentHashMap<Class<?>, Schema<?>>();
 
