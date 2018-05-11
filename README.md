@@ -15,7 +15,7 @@
 - swagger: http://localhsot:8090/swagger-ui.html
 - actator: http://localhost:8090/manage/**
 
-**注**：本示例访问以上非用户功能时需要通过Spring Security验证
+**注**：本示例访问以上非用户功能时需要通过 `Spring Security` 验证
 示例表结构：
 ```
 CREATE TABLE `user` (
@@ -32,6 +32,7 @@ CREATE TABLE `user` (
    ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='用户表';
 ```
 **注**：本示例中已使用 _org.springframework.security.crypto.password.PasswordEncoder_ 对密码进行加密，请勿直接向表中手动添加数据，可由 [单元测试](https://github.com/zssjz/techno/blob/master/src/test/java/com/jason/config/dao/UserRepositoryTest.java) 中添加数据。
+
 **注**：本示例中 [UserDO](https://github.com/zssjz/techno/blob/master/src/main/java/com/jason/entity/UserDO.java) 实体已经默认为用户分配"ADMIN"权限，可根据实际项目需要 自行更改权限分配方式。
 
-如有疑问，请查阅[官方文档]。
+如有疑问，请查阅官方文档。
