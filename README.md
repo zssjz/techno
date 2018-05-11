@@ -1,19 +1,21 @@
 # Techno
 
----
 - 该示例仅为技术验证工程，还存在许多待(b)完(u)善(g)的地方，针对未加入的功能会在后续版本中逐一实现。
 - 该示例工程使用 `Spring Boot 1.5.12.RELEASE` 版本，与2.0版本存在差异，不可直接修改版本号升级。
 - 包结构可通过项目实际需要自行整理。
 - 命名规则及其相关问题可参考 `《阿里巴巴Java开发手册》` ，或在IDE中安装 `P3C` 插件自行检查。
+- 如有疑问，请查阅官方文档。
+
+---
 
 ## 启动
 
----
 运行 [TechnoApplication](https://github.com/zssjz/techno/blob/master/src/main/java/com/jason/TechnoApplication.java) 中的 _main_ 方法。
+
+---
 
 ## 其他说明
 
----
 - druid监控：http://localhost:8090/druid/index.html
 - swagger：http://localhsot:8090/swagger-ui.html
 - actator：http://localhost:8090/manage/*
@@ -34,6 +36,5 @@ CREATE TABLE `user` (
    ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='用户表';
 ```
 **注**：本示例中已使用 _org.springframework.security.crypto.password.PasswordEncoder_ 对密码进行加密，请勿直接向表中手动添加数据，可由 [单元测试](https://github.com/zssjz/techno/blob/master/src/test/java/com/jason/config/dao/UserRepositoryTest.java) 类中添加数据；
-**注**：本示例中 [UserDO](https://github.com/zssjz/techno/blob/master/src/main/java/com/jason/entity/UserDO.java) 实体已经默认为用户分配"ADMIN"权限，可根据实际项目需要自行更改权限分配方式；
 
-如有疑问，请查阅官方文档。
+**注**：本示例中 [UserDO](https://github.com/zssjz/techno/blob/master/src/main/java/com/jason/entity/UserDO.java) 实体已经默认为用户分配"ADMIN"权限，可根据实际项目需要自行更改权限分配方式；
