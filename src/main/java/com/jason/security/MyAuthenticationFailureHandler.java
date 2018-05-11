@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * 失败处理器返回接送信息
+ * 失败处理器返回json信息
  * Created by Jason on 2018/4/16.
  */
 @Component
