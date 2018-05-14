@@ -30,6 +30,6 @@ public class WebConf extends WebMvcConfigurerAdapter {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
 //        super.addCorsMappings(registry);
-        registry.addMapping("*/**");
+        registry.addMapping("/**"); // 允许所有
     }
 }
