@@ -44,10 +44,10 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
 //        super.configure(http);
 
         // 所有请求通过权限验证，用于测试
-//        http.authorizeRequests()
-//                .antMatchers("/**").permitAll()
-//                .and()
-//                .csrf().disable();
+        http.authorizeRequests()
+                .antMatchers("/**").permitAll()
+                .and()
+                .csrf().disable();
 
         http.formLogin()    // 基于表单的认证
                 .loginPage("/login")    // 自定义登录页面
@@ -55,13 +55,13 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
                 .failureHandler(failureHandler) // 登录失败处理
                 .loginProcessingUrl("/checkIn");   // 登录请求
 
-        http.authorizeRequests()    // 任何请求
-                .antMatchers("/","/index","/login","/logout","/resources/**").permitAll()    // 允许所有用户访问
-                .antMatchers("/druid/**","/swagger/**","/manage/**").hasRole("ADMIN")  // ADMIN权限才能访问（hasRole方法不需要前缀“ROLE_”）
-                .anyRequest()   // 其他请求
-                .authenticated()    // 需要权限验证
-                .and()
-                .csrf().disable();  // 关闭CSRF 验证
+//        http.authorizeRequests()    // 任何请求
+//                .antMatchers("/","/index","/login","/logout","/resources/**").permitAll()    // 允许所有用户访问
+//                .antMatchers("/druid/**","/swagger/**","/manage/**").hasRole("ADMIN")  // ADMIN权限才能访问（hasRole方法不需要前缀“ROLE_”）
+//                .anyRequest()   // 其他请求
+//                .authenticated()    // 需要权限验证
+//                .and()
+//                .csrf().disable();  // 关闭CSRF 验证
 
         http.logout()   // 登出
                 .logoutUrl("/logout")
