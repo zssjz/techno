@@ -1,19 +1,23 @@
 package com.jason.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.alibaba.druid.stat.DruidDataSourceStatManager;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.bind.RelaxedPropertyResolver;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.env.Environment;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
-import javax.servlet.ServletRegistration;
 import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -35,6 +39,8 @@ public class DataSourceConf implements EnvironmentAware {
     }
 
     @Bean
+    @ConfigurationProperties(prefix = "spring.datasource.techno")
+    @Primary
     public DataSource dataSource() {
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setDriverClassName(propertyResolver.getProperty("driver-class-name"));
@@ -77,5 +83,12 @@ public class DataSourceConf implements EnvironmentAware {
         filterRegistrationBean.addUrlPatterns("/*");
         filterRegistrationBean.addInitParameter("exclusions", "*.js,*.css,*.gif,*.png,*.jpg,*.ico,/druid/*");
         return filterRegistrationBean;
+    }
+
+    @Bean
+    @Primary
+    public DataSourceTransactionManager dataSourceTransactionManager(@Qualifier("dataSource") DataSource dataSource) {
+
+        return null;
     }
 }
