@@ -39,14 +39,13 @@ public class DataSourceConf implements EnvironmentAware {
     }
 
     @Bean
-    @ConfigurationProperties(prefix = "spring.datasource.techno")
     @Primary
     public DataSource dataSource() {
         DruidDataSource dataSource = new DruidDataSource();
-        dataSource.setDriverClassName(propertyResolver.getProperty("driver-class-name"));
-        dataSource.setUrl(propertyResolver.getProperty("url"));
-        dataSource.setUsername(propertyResolver.getProperty("username"));
-        dataSource.setPassword(propertyResolver.getProperty("password"));
+        dataSource.setDriverClassName(propertyResolver.getProperty("techno.driver-class-name"));
+        dataSource.setUrl(propertyResolver.getProperty("techno.url"));
+        dataSource.setUsername(propertyResolver.getProperty("techno.username"));
+        dataSource.setPassword(propertyResolver.getProperty("techno.password"));
         dataSource.setMinIdle(Integer.valueOf(propertyResolver.getProperty("minIdle")));
         dataSource.setMaxActive(Integer.valueOf(propertyResolver.getProperty("maxIdle")));
         dataSource.setMaxWait(Long.valueOf(propertyResolver.getProperty("maxWait")));
@@ -85,10 +84,10 @@ public class DataSourceConf implements EnvironmentAware {
         return filterRegistrationBean;
     }
 
-    @Bean
-    @Primary
-    public DataSourceTransactionManager dataSourceTransactionManager(@Qualifier("dataSource") DataSource dataSource) {
-
-        return null;
-    }
+//    @Bean
+//    @Primary
+//    public DataSourceTransactionManager dataSourceTransactionManager(@Qualifier("dataSource") DataSource dataSource) {
+//
+//        return null;
+//    }
 }

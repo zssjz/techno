@@ -6,11 +6,6 @@ server:
 
 spring:
   datasource:
-#    type: com.alibaba.druid.pool.DruidDataSource
-#    driver-class-name: com.mysql.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/techno?useUnicode=true&characterEncoding=utf8
-#    username: root
-#    password: root
     initialSize: 5
     minIdle: 5
     maxIdle: 30
@@ -24,11 +19,24 @@ spring:
     allow:  # ip白名单，为空时所有都可访问
 #    deny: # ip黑名单，若与白名单冲突，优先级高于白名单
     restEnable: false # 禁用HTML页面的 Rest all 功能
+
+    techno:
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/techno?useUnicode=true&characterEncoding=utf8
+      username: root
+      password: root
+    jason:
+      type: com.zaxxer.hikari.HikariDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/jason?useUnicode=true&characterEncoding=utf8
+      username: root
+      password: root
+
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: none
-
 
   thymeleaf:
     prefix: classpath:/templates/
@@ -59,21 +67,3 @@ management:
 logging:
   level:
     com.jason.techno.components.service.impl: debug
-
-spring:
-  datasource:
-    techno:
-      type: com.alibaba.druid.pool.DruidDataSource
-      driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/techno?useUnicode=true&characterEncoding=utf8
-      username: root
-      password: root
-      name: techno
-    jason:
-      type: com.zaxxer.hikari.HikariDataSource
-      driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/techno?useUnicode=true&characterEncoding=utf8
-      username: root
-      password: root
-      name: jason
-

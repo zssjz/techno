@@ -3,14 +3,17 @@ package com.jason.config;
 import com.zaxxer.hikari.HikariDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.bind.RelaxedPropertyResolver;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
+import javax.transaction.TransactionManager;
 
 @Configuration
 public class HikariDataSourceConf implements EnvironmentAware {
@@ -25,13 +28,12 @@ public class HikariDataSourceConf implements EnvironmentAware {
     }
 
     @Bean(name = "HikariCP")
-    @ConfigurationProperties(prefix = "spring.datasource.jason")
     public DataSource hickricp() {
         HikariDataSource dataSource = new HikariDataSource();
-        dataSource.setDriverClassName(propertyResolver.getProperty("driver-class-name"));
-        dataSource.setJdbcUrl(propertyResolver.getProperty("url"));
-        dataSource.setUsername(propertyResolver.getProperty("username"));
-        dataSource.setPassword(propertyResolver.getProperty("password"));
+        dataSource.setDriverClassName(propertyResolver.getProperty("jason.driver-class-name"));
+        dataSource.setJdbcUrl(propertyResolver.getProperty("jason.url"));
+        dataSource.setUsername(propertyResolver.getProperty("jason.username"));
+        dataSource.setPassword(propertyResolver.getProperty("jason.password"));
         dataSource.setMinimumIdle(Integer.valueOf(propertyResolver.getProperty("minIdle")));
         dataSource.setMaximumPoolSize(Integer.valueOf(propertyResolver.getProperty("maxIdle")));
         dataSource.setMaxLifetime(Long.valueOf(propertyResolver.getProperty("maxWait")));
@@ -40,4 +42,9 @@ public class HikariDataSourceConf implements EnvironmentAware {
 //        dataSource.setUseGlobalDataSourceStat(Boolean.valueOf(propertyResolver.getProperty("useGlobalDataSourceStat")));
         return dataSource;
     }
+
+//    @Bean
+//    public DataSourceTransactionManager transactionManager(@Qualifier("HikariCP") DataSource dataSource) {
+//        return null;
+//    }
 }
