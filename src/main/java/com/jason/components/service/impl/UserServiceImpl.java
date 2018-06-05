@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by Jason on 2018/4/18.
  */
@@ -45,6 +47,23 @@ public class UserServiceImpl implements UserService {
             msg.setState(0);
             msg.setCode("");
             msg.setInfo("注册失败");
+        }
+        return msg;
+    }
+
+    @Override
+    public MessageDTO getUserAll() {
+        MessageDTO msg = new MessageDTO();
+        try {
+            List<UserDO> result = userRepository.findAll();
+            msg.setState(1);
+            msg.setCode("200");
+            msg.setContent(result);
+        } catch (Exception e) {
+            e.printStackTrace();
+            msg.setState(0);
+            msg.setContent("500");
+            msg.setContent(e.getMessage());
         }
         return msg;
     }

@@ -34,7 +34,7 @@ public class UserDO implements UserDetails {
 
     @ApiModelProperty(name = "password", value = "密码")
     @NotBlank(message = "密码不能为空")
-    @Size(min = 6,max = 18, message = "密码长度不得小于6位，不得大于18位")
+//    @Size(min = 6,max = 18, message = "密码长度不得小于6位，不得大于18位")
     private String password;
 
     @ApiModelProperty(name = "isAccountNonExpired", value = "账号未过期", hidden = true)

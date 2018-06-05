@@ -14,4 +14,10 @@ public interface UserService {
      * @return
      */
     MessageDTO registerUser(UserDO user);
+
+    /**
+     *
+     * @return
+     */
+    MessageDTO getUserAll();
 }
