@@ -1,6 +1,7 @@
 package com.jason.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jason.dto.MessageDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +29,19 @@ public class MyAuthenticationFailureHandler extends SimpleUrlAuthenticationFailu
     private ObjectMapper objectMapper;
 
     @Override
-    public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
+    public void onAuthenticationFailure(HttpServletRequest httpServletRequest,
+                                        HttpServletResponse httpServletResponse,
+                                        AuthenticationException e) throws IOException, ServletException {
+
+        MessageDTO msg = new MessageDTO(
+                HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                0,
+                e.getMessage(),
+                "");
+
         // 登录错误 状态码500
         httpServletResponse.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
         httpServletResponse.setContentType("application/json;charset=UTF-8");
-        httpServletResponse.getWriter().write(objectMapper.writeValueAsString(e));
+        httpServletResponse.getWriter().write(objectMapper.writeValueAsString(msg));
     }
 }

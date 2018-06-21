@@ -7,7 +7,7 @@ public class MessageDTO {
 
     private Integer state;
 
-    private String code;
+    private Integer code;
 
     private String info;
 
@@ -16,7 +16,11 @@ public class MessageDTO {
     public MessageDTO() {
     }
 
-    public MessageDTO(Integer state, String code, String info, Object content) {
+    public MessageDTO(String info) {
+        this.info = info;
+    }
+
+    public MessageDTO(Integer state, Integer code, String info, Object content) {
         this.state = state;
         this.code = code;
         this.info = info;
@@ -31,11 +35,11 @@ public class MessageDTO {
         this.state = state;
     }
 
-    public String getCode() {
+    public Integer getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(Integer code) {
         this.code = code;
     }
 

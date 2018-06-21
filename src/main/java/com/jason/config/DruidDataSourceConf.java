@@ -24,10 +24,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * 主数据源
  * Created by Jason on 2018/4/13.
  */
 @Configuration
-public class DataSourceConf implements EnvironmentAware {
+public class DruidDataSourceConf implements EnvironmentAware {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -38,7 +39,7 @@ public class DataSourceConf implements EnvironmentAware {
         this.propertyResolver = new RelaxedPropertyResolver(environment,"spring.datasource.");
     }
 
-    @Bean
+    @Bean(name = "Druid")
     @Primary
     public DataSource dataSource() {
         DruidDataSource dataSource = new DruidDataSource();
