@@ -72,4 +72,5 @@ CREATE TABLE `user` (
 - swagger：http://localhsot:8090/swagger-ui.html
 
 - actator：http://localhost:8090/manage/*
+
 **注**：actator结尾的 `*` 为通配符，详情请查看[官方文档](https://docs.spring.io/spring-boot/docs/1.5.12.RELEASE/reference/htmlsingle/#production-ready)。
