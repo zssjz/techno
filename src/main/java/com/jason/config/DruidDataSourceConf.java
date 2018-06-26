@@ -27,7 +27,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 主数据源
+ * 主数据源配置
+ *  基于Spring Data Jpa的多数据源实现，以管理数据对象（entity）和持久层（dao,repository）实现分库
  * Created by Jason on 2018/4/13.
  */
 @Configuration

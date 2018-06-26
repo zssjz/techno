@@ -21,6 +21,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 import javax.transaction.TransactionManager;
 
+/**
+ * 其他数据源配置
+ *  基于Spring Data Jpa的多数据源实现，以管理数据对象（entity）和持久层（dao,repository）实现分库
+ */
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(

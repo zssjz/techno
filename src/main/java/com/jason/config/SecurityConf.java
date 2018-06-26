@@ -56,7 +56,7 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/checkIn");   // 登录请求
 
         http.authorizeRequests()    // 任何请求
-                .antMatchers("/","/index","/login","/logout","/resources/**").permitAll()    // 允许所有用户访问
+                .antMatchers("/","/index","/login","/logout").permitAll()    // 允许所有用户访问
                 .antMatchers("/druid/**","/swagger/**","/manage/**").hasRole("ADMIN")  // ADMIN权限才能访问（hasRole方法不需要前缀“ROLE_”）
                 .anyRequest()   // 其他请求
                 .authenticated()    // 需要权限验证

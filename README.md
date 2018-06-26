@@ -20,13 +20,35 @@
 
 ---
 
+## 项目结构
+```
+    -src
+      -main
+        -java
+          -com
+            -jason
+              -components   业务组件
+                -control    业务控制层
+                -dao        业务jpa持久层
+                -model      业务数据对象
+                -service    业务服务层
+              -config       项目配置
+              -dto          项目数据传输对象
+              -entity       项目实体
+              -repository   项目jpa持久层
+              -schedule     项目定时任务
+              -security     项目security实现
+              -utils        项目工具类
+        -resources
+          -static           静态文件（css,js,img等）
+          -templates        视图文件（html,jsp等）
+      -test                 单元测试
+```
+---
+
 ## 其他说明
 
-- druid监控：http://localhost:8090/druid/index.html
-- swagger：http://localhsot:8090/swagger-ui.html
-- actator：http://localhost:8090/manage/*
-
-**注**：本示例访问以上非用户功能时需要通过 `Spring Security` 验证,示例表结构如下；
+**注**：本示例访问某些功能时需要通过 `Spring Security` 验证,示例表结构如下：
 ```
 CREATE TABLE `user` (
      `id` int(10) NOT NULL AUTO_INCREMENT,
@@ -45,4 +67,9 @@ CREATE TABLE `user` (
 
 **注**：本示例中 [UserDO](https://github.com/zssjz/techno/blob/master/src/main/java/com/jason/entity/UserDO.java) 实体已经默认为用户分配"ADMIN"权限，可根据实际项目需要自行更改权限分配方式；
 
-**注**：actator结尾的 `*` 为通配符，具体使用方式请搜索相关文档。
+- druid监控：http://localhost:8090/druid/index.html
+
+- swagger：http://localhsot:8090/swagger-ui.html
+
+- actator：http://localhost:8090/manage/*
+**注**：actator结尾的 `*` 为通配符，详情请查看[官方文档](https://docs.spring.io/spring-boot/docs/1.5.12.RELEASE/reference/htmlsingle/#production-ready)。
