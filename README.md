@@ -24,26 +24,32 @@
 ```
     -src
       -main
-        -java
-          -com
-            -jason
-              -components   业务组件
-                -control    业务控制层
-                -dao        业务jpa持久层
-                -model      业务数据对象
-                -service    业务服务层
-              -config       项目配置
-              -dto          项目数据传输对象
-              -entity       项目实体
-              -repository   项目jpa持久层
-              -schedule     项目定时任务
-              -security     项目security实现
-              -utils        项目工具类
-        -resources
-          -static           静态文件（css,js,img等）
-          -templates        视图文件（html,jsp等）
-      -test                 单元测试
+      |  -java
+      |  |  -com
+      |  |    -jason
+      |  |      -components   业务组件
+      |  |      |  -control    业务控制层
+      |  |      |  -dao        业务jpa持久层
+      |  |      |  -model      业务数据对象
+      |  |      |  -service    业务服务层
+      |  |      -config       项目配置
+      |  |      -dto          项目数据传输对象
+      |  |      -entity       项目实体
+      |  |      -repository   项目jpa持久层
+      |  |      -schedule     项目定时任务
+      |  |      -security     项目security实现
+      |  |      -utils        项目工具类
+      |  -resources
+      |    -static           静态文件（css,js,img等）
+      |    -templates        视图文件（html,jsp等）
+      -test                  单元测试
 ```
+---
+
+## 多数据源
+
+本示例基于 `Spring Data Jpa` 实现两个数据源配置，配置使用 `Druid` 及 `HikariCP` 分别配置两个数据库；本示例仅演示同一 `MySQL` 下的不同数据库，可根据实际项目需要进行调整。
+
 ---
 
 ## 其他说明
