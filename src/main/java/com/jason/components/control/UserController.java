@@ -24,7 +24,8 @@ public class UserController {
 
     @ApiOperation(value = "获取用户列表（分页）", notes = "无条件筛选")
     @GetMapping("/list")
-    public MessageDTO getUserList(@RequestParam("page") Integer page, @RequestParam("size") Integer size) {
+    public MessageDTO getUserList(@RequestParam("page") Integer page,
+                                  @RequestParam("size") Integer size) {
         MessageDTO msg = null;
         try {
             Pageable pageable = new PageRequest(page, size);

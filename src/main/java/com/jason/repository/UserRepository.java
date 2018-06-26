@@ -1,4 +1,4 @@
-package com.jason.components.dao;
+package com.jason.repository;
 
 import com.jason.entity.UserDO;
 import org.springframework.data.domain.Pageable;

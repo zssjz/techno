@@ -1,7 +1,7 @@
 package com.jason.config.dao;
 
 import com.jason.TechnoApplication;
-import com.jason.components.dao.UserRepository;
+import com.jason.repository.UserRepository;
 import com.jason.entity.UserDO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,9 +21,9 @@ public class UserRepositoryTest {
 
     @Test
     public void testSave() {
-        UserDO userDO = new UserDO("jason","admin",1,1,1,1);
-        userRepository.save(userDO);
-        System.out.println(userDO);
+        UserDO userDO = new UserDO("jason@163.com","admin",1,1,1,1);
+        UserDO result = userRepository.save(userDO);
+        System.out.println(result);
 
     }
 

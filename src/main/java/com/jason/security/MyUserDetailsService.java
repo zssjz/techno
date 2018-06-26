@@ -1,6 +1,6 @@
 package com.jason.security;
 
-import com.jason.components.dao.UserRepository;
+import com.jason.repository.UserRepository;
 import com.jason.entity.UserDO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

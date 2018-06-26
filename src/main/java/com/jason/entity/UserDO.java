@@ -23,30 +23,36 @@ public class UserDO implements UserDetails {
 
     @ApiModelProperty(name = "id", value = "主键", hidden = true)
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    @SequenceGenerator(name = "id", sequenceName = "")    // 使用自定义序列
     private Integer id;
 
     @ApiModelProperty(name = "username", value = "用户名")
     @NotBlank(message = "账号不能为空")
     @Email(message = "请输入正确的邮箱地址")
+    @Column(name = "username")
     private String username;
 
     @ApiModelProperty(name = "password", value = "密码")
     @NotBlank(message = "密码不能为空")
-//    @Size(min = 6,max = 18, message = "密码长度不得小于6位，不得大于18位")
+//    @Size(min = 6,max = 18, message = "密码长度不得小于6位，不得大于18位")   // security加密后再验证长度
+    @Column(name = "password")
     private String password;
 
     @ApiModelProperty(name = "isAccountNonExpired", value = "账号未过期", hidden = true)
+    @Column(name = "is_account_non_expired")
     private Integer isAccountNonExpired;
 
     @ApiModelProperty(name = "isAccountNonLocked", value = "账号未锁定", hidden = true)
+    @Column(name = "is_account_non_locked")
     private Integer isAccountNonLocked;
 
     @ApiModelProperty(name = "isCredentialsNonExpired", value = "密码未过期", hidden = true)
+    @Column(name = "is_credentials_non_expired")
     private Integer isCredentialsNonExpired;
 
     @ApiModelProperty(name = "isEnabled", value = "账号可用", hidden = true)
+    @Column(name = "is_enabled")
     private Integer isEnabled;
 
     public UserDO(){}
@@ -135,8 +141,8 @@ public class UserDO implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        AuthorityUtils.commaSeparatedStringToAuthorityList("role_admin,role_user");
-        return null;
+        return AuthorityUtils.commaSeparatedStringToAuthorityList("role_admin,role_user");
+//        return null;
     }
 
     @Override

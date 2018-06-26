@@ -1,6 +1,6 @@
 package com.jason.components.service.impl;
 
-import com.jason.components.dao.UserRepository;
+import com.jason.repository.UserRepository;
 import com.jason.dto.MessageDTO;
 import com.jason.entity.UserDO;
 import com.jason.components.service.UserService;
