@@ -1,0 +1,49 @@
+server:
+  port: 8090
+  servlet:
+    context-path: /techno
+spring:
+  application:
+    name: techno
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/security?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: root
+    hikari:
+      # 连接池最小连接数
+      minimum-idle: 5
+      # 连接池最大连接数
+      maximum-pool-size: 30
+      # 客户端等待连接池最大毫秒数
+      connection-timeout: 300000
+      # 连接池中最大空闲毫秒数
+      idle-timeout: 300000
+      # 连接池关闭后的最大生命周期毫秒数
+      max-lifetime: 1200000
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: com.jason.config.MySQL5Config
+  thymeleaf:
+    servlet:
+      content-type: text/html
+    mode: HTML
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+    cache: false
+    check-template: true
+    check-template-location: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+
+
+
