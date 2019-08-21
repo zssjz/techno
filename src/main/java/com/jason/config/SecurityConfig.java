@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -53,6 +54,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
+    public void configure(WebSecurity web) throws Exception {
+//        super.configure(web);
+        web.ignoring().antMatchers("/resources/**");
+    }
+
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
 //        super.configure(http);
 //        http.httpBasic()
@@ -70,7 +77,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .rememberMe()                                   // 记住我
                 .tokenRepository(persistentTokenRepository())   // 数据库记录
-                .tokenValiditySeconds(300)                     // 过期时间
+                .tokenValiditySeconds(3600 * 24 * 3)            // 过期时间
                 .userDetailsService(userDetailsService)         // 登录方法
                 .and()
                 .authorizeRequests()
@@ -78,7 +85,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/authentication/require",  // 跳转处理
             "/login",                                           // 重定向
             "/login.html",                                      // 登录页
-            "/code/image"                                       // 图片验证码
+            "/code/*"                                           // 验证码
                 ).permitAll()
                 .anyRequest()
                 .authenticated();

@@ -1,9 +1,11 @@
 package com.jason.security;
 
 import com.jason.module.MessageDTO;
+import com.jason.security.handler.IdentificationFailureHandler;
 import com.jason.security.model.ValidateCode;
 import com.jason.security.model.ValidateImageCode;
 import com.jason.security.support.ValidateCodeGenerator;
+import com.jason.security.support.ValidateCodeSender;
 import com.jason.security.support.ValidateImageCodeGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,10 +18,8 @@ import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.social.connect.web.HttpSessionSessionStrategy;
 import org.springframework.social.connect.web.SessionStrategy;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.ServletWebRequest;
 
 import javax.imageio.ImageIO;
@@ -48,6 +48,9 @@ public class SecurityController {
 
     @Autowired
     private ValidateCodeGenerator validateCodeGenerator;
+
+    @Autowired
+    private ValidateCodeSender validateCodeSender;
 
     /**
      * 需要身份认证时处理前对html请求及接口进行分流
@@ -84,16 +87,19 @@ public class SecurityController {
     }
 
     /**
-     * 生成短信验证码
+     * 发送短信验证码
      * @param request
      * @param response
      */
     @GetMapping("/code/sms")
-    public void createValidateSmsCode(HttpServletRequest request, HttpServletResponse response) {
+    public void createvalidateSmsCode(HttpServletRequest request, HttpServletResponse response) {
+        String phone = request.getParameter("phone");
+        if (StringUtils.isEmpty(phone)) {
+            // TODO
+        }
         ValidateCode validateCode = validateCodeGenerator.smsGenerator(new ServletWebRequest(request));
         sessionStrategy.setAttribute(new ServletWebRequest(request), SESSION_KEY, validateCode);
-        String phone = request.getParameter("phone");
-        // TODO 短信服务商发送短信
-        // TODO send(phone, validateCode)
+        validateCodeSender.send(phone, validateCode);
+
     }
 }

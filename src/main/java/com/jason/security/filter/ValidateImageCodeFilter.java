@@ -1,7 +1,6 @@
 package com.jason.security.filter;
 
-import com.jason.exception.ValidateImageCodeException;
-import com.jason.security.SecurityController;
+import com.jason.exception.ValidateCodeException;
 import com.jason.security.handler.IdentificationFailureHandler;
 import com.jason.security.model.ValidateImageCode;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,24 +38,27 @@ public class ValidateImageCodeFilter extends OncePerRequestFilter {
     private String contextPath;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
-        String url = httpServletRequest.getRequestURI();
-        String method = httpServletRequest.getMethod();
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+        String url = request.getRequestURI();
+        String method = request.getMethod();
+
+        // 对contentPath处理
         if (!StringUtils.isEmpty(contextPath) && url.startsWith(contextPath)) {
             url = url.substring(contextPath.length());
         }
 
-        if ("/form/login".equals(url) && "POST".equalsIgnoreCase(httpServletRequest.getMethod())) {
+        // 对特定路径及方法进行拦截
+        if ("/form/login".equals(url) && "POST".equalsIgnoreCase(request.getMethod())) {
             try {
-                validate(new ServletWebRequest(httpServletRequest));
+                validate(new ServletWebRequest(request));
                 logger.info("验证码校验通过");
-            } catch (ValidateImageCodeException e) {
+            } catch (ValidateCodeException e) {
                 logger.info("验证码校验不通过");
-                identificationFailureHandler.onAuthenticationFailure(httpServletRequest, httpServletResponse, e);
+                identificationFailureHandler.onAuthenticationFailure(request, response, e);
                 return;
             }
         }
-        filterChain.doFilter(httpServletRequest, httpServletResponse);
+        filterChain.doFilter(request, response);
     }
 
     /**
@@ -65,17 +67,18 @@ public class ValidateImageCodeFilter extends OncePerRequestFilter {
      */
     private void validate(ServletWebRequest servletWebRequest) throws ServletRequestBindingException {
         ValidateImageCode imageCode = (ValidateImageCode) sessionStrategy.getAttribute(servletWebRequest, SESSION_KEY);
+        // 从请求中获取参数名为imageCode的参数
         String codeInRequest = ServletRequestUtils.getStringParameter(servletWebRequest.getRequest(), "imageCode");
 
         if (StringUtils.isEmpty(codeInRequest)) {
-            throw new ValidateImageCodeException("验证码不能为空");
+            throw new ValidateCodeException("验证码不能为空");
         }
         if (imageCode.isExpired()) {
             sessionStrategy.removeAttribute(servletWebRequest, SESSION_KEY);
-            throw new ValidateImageCodeException("验证码已过期");
+            throw new ValidateCodeException("验证码已过期");
         }
         if (!imageCode.getCode().equals(codeInRequest)) {
-            throw new ValidateImageCodeException("验证码不匹配");
+            throw new ValidateCodeException("验证码不匹配");
         }
         sessionStrategy.removeAttribute(servletWebRequest, SESSION_KEY);
     }
