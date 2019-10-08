@@ -1,4 +1,4 @@
-package com.jason.social.qq;
+package com.jason.social.qq.api;
 
 /**
  * Created by BNC on 2019/8/20.

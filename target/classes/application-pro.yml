@@ -46,8 +46,8 @@ management:
         include: '*'
 
 social:
-  filterProcessUrl: /auth # 社交登录指定路径
-  signUpUrl: /signup  # 注册页
+  filterProcessUrl: /auth
+  signUpUrl: /signup
   qq:
     appId: 1234567
     appSecret: 1234567

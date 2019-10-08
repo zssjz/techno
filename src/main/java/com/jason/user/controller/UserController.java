@@ -68,4 +68,12 @@ public class UserController {
     public Object getCurrentUser(@AuthenticationPrincipal UserDetails userDetails) {
         return userDetails;
     }
+
+
+    @PostMapping("/signup")
+    public MessageDTO sigUp() {
+
+        return null;
+    }
+
 }

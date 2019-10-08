@@ -1,0 +1,64 @@
+server:
+  port: 8090
+  servlet:
+    context-path: /techno
+spring:
+  application:
+    name: techno
+  techno:
+    datasource:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/techno?useUnicode=true&characterEncoding=utf8
+      username: root
+      password: root
+      # 连接池最小连接数
+      minimum-idle: 6
+      # 连接池最大连接数
+      maximum-pool-size: 30
+      # 客户端等待连接池最大毫秒数
+      connection-timeout: 300000
+      # 连接池中最大空闲毫秒数
+      idle-timeout: 300000
+      # 连接池关闭后的最大生命周期毫秒数
+      max-lifetime: 1200000
+
+  security:
+    datasource:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/security?useUnicode=true&characterEncoding=utf8
+      username: root
+      password: root
+      # 初始化连接池数量
+      initialSize: 6
+      # 连接池最小连接数
+      minIdle: 6
+      # 连接池最大连接数
+      maxIdle: 30
+      # 获取连接等待超时毫秒数
+      maxWait: 60000
+      # 关闭空闲连接间隔检测时间
+      timeBetweenEvictionRunsMillis: 60000
+      # 单个连接在池中最小存活时间
+      minEvictableIdleTimeMillis: 300000
+      # 配置监控拦截的filters,去掉后无法统计sql，wall用于防火墙
+      filters: stat,wall,slf4j
+      # 合并多个监控数据
+      useGlobalDataSourceStat: true
+      # SQL 查询验证超时时间（秒）
+      validationQueryTimeout: 5
+      # 登录
+      loginUsername: druid
+      loginPassword:  druid
+      # ip白名单，为空时所有都可访问
+      #allow:
+      # ip黑名单，若与白名单冲突，优先级高于白名单
+      deny:
+      # 禁用HTML页面的 Rest all 功能
+      restEnable: false
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: com.jason.config.MySQL5Config
+    show-sql: true

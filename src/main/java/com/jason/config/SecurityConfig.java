@@ -1,9 +1,11 @@
 package com.jason.config;
 
+import com.jason.security.ExpiredSessionStrategy;
 import com.jason.security.filter.ValidateImageCodeFilter;
 import com.jason.security.handler.IdentificationFailureHandler;
 import com.jason.security.handler.IdentificationSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.social.security.SpringSocialConfigurer;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -34,6 +37,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private ValidateImageCodeFilter validateImageCodeFilter;
 
+    @Autowired
+    private SpringSocialConfigurer springSocialConfigurer;
+
     @Resource
     private DataSource dataSource;
 
@@ -44,6 +50,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder () {
         return new BCryptPasswordEncoder();
     }
+
+    @Value("${social.signUpUrl}")
+    private String signUpUrl;
 
     @Bean
     public PersistentTokenRepository persistentTokenRepository () {
@@ -56,7 +65,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
 //        super.configure(web);
-        web.ignoring().antMatchers("/resources/**");
+        web.ignoring().antMatchers("/lib/**");
     }
 
     @Override
@@ -69,6 +78,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .authenticated();
 
         http.addFilterBefore(validateImageCodeFilter, UsernamePasswordAuthenticationFilter.class)
+                .apply(springSocialConfigurer)
+                .and()
                 .formLogin()
                 .loginPage("/authentication/require")
                 .loginProcessingUrl("/form/login")              // 自定义的登录接口
@@ -80,12 +91,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .tokenValiditySeconds(3600 * 24 * 3)            // 过期时间
                 .userDetailsService(userDetailsService)         // 登录方法
                 .and()
+                .sessionManagement()
+                .invalidSessionUrl("/session/invalid")
+                .maximumSessions(1)
+                .maxSessionsPreventsLogin(true) // 当session达到最大数量时，限制后续session登录请求
+                .expiredSessionStrategy(new ExpiredSessionStrategy())
+                .and()
+                .and()
                 .authorizeRequests()
                 .antMatchers(                                   // 不经过认证的url
                         "/authentication/require",  // 跳转处理
             "/login",                                           // 重定向
             "/login.html",                                      // 登录页
-            "/code/*"                                           // 验证码
+            "/code/*",                                           // 验证码
+                        signUpUrl,
+                "/session/invalid"
                 ).permitAll()
                 .anyRequest()
                 .authenticated();

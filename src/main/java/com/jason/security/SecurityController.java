@@ -100,6 +100,15 @@ public class SecurityController {
         ValidateCode validateCode = validateCodeGenerator.smsGenerator(new ServletWebRequest(request));
         sessionStrategy.setAttribute(new ServletWebRequest(request), SESSION_KEY, validateCode);
         validateCodeSender.send(phone, validateCode);
+    }
 
+    /**
+     * session过期
+     * @return
+     */
+    @GetMapping("/session/invalid")
+    @ResponseStatus(code = HttpStatus.UNAUTHORIZED)
+    public MessageDTO sessionInvalid() {
+        return new MessageDTO(1, HttpStatus.UNAUTHORIZED, "登录认证已过期");
     }
 }

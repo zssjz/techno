@@ -1,4 +1,4 @@
-package com.jason.social.qq;
+package com.jason.social.qq.api;
 
 /**
  * Created by BNC on 2019/8/20.
@@ -28,6 +28,8 @@ public class QQUserInfo {
 
     //	大小为100×100像素的QQ头像URL。需要注意，不是所有的用户都拥有QQ的100x100的头像，但40x40像素则是一定会有。
     private String figureurl_qq_2;
+
+    private String openId;
 
     //	性别。 如果获取不到则默认返回"男"
     private String gender;
@@ -152,5 +154,13 @@ public class QQUserInfo {
 
     public void setIs_yellow_year_vip(String is_yellow_year_vip) {
         this.is_yellow_year_vip = is_yellow_year_vip;
+    }
+
+    public String getOpenId() {
+        return openId;
+    }
+
+    public void setOpenId(String openId) {
+        this.openId = openId;
     }
 }
